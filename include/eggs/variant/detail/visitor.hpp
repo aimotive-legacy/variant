@@ -134,6 +134,11 @@ namespace eggs { namespace variants { namespace detail
         template <typename T>
         static void call(void* ptr)
         {
+            // https://stackoverflow.com/questions/36350338/avoid-nasty-warning-c4100-in-visual-studio
+            // C4100 can also be issued when code calls a destructor on a otherwise unreferenced parameter of primitive type.
+            // This is a limitation of the Visual C++ compiler.
+            (void)ptr;
+
             static_cast<T*>(ptr)->~T();
         }
     };
