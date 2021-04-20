@@ -1,7 +1,7 @@
 //! \file eggs/variant/variant.hpp
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -110,6 +110,8 @@ namespace eggs { namespace variants
             struct _fallback {};
             struct _ambiguous {};
 
+            using _fallback_fun_ptr = _fallback(*)(...);
+
             template <std::size_t I, typename T>
             struct _overload
             {
@@ -124,8 +126,7 @@ namespace eggs { namespace variants
             struct overloads<pack<Ts...>, pack_c<std::size_t, Is...>>
               : _overload<Is, Ts>...
             {
-                using fun_ptr = _fallback(*)(...);
-                operator fun_ptr();
+                operator _fallback_fun_ptr();
             };
 
             template <std::size_t I, typename T, typename U>
@@ -146,8 +147,7 @@ namespace eggs { namespace variants
             struct explicit_overloads<pack<Ts...>, U, pack_c<std::size_t, Is...>>
               : _explicit_overload<Is, Ts, U>...
             {
-                using fun_ptr = _fallback(*)(...);
-                operator fun_ptr();
+                operator _fallback_fun_ptr();
             };
 
             template <typename F, typename T>
@@ -343,17 +343,7 @@ namespace eggs { namespace variants
         {
             struct _fallback {};
 
-            template <typename T>
-            static typename std::enable_if<
-                std::is_move_constructible<T>::value
-             && std::is_move_assignable<T>::value
-            >::type swap(T&, T&)
-#  if EGGS_CXX11_STD_HAS_IS_NOTHROW_TRAITS
-                noexcept(
-                    std::is_nothrow_move_constructible<T>::value
-                 && std::is_nothrow_move_assignable<T>::value)
-#  endif
-                ;
+            using std::swap;
 
             template <typename T>
             static auto check_swap(int)
@@ -1343,9 +1333,10 @@ namespace eggs { namespace variants
 
 #if EGGS_CXX14_HAS_VARIABLE_TEMPLATES
     //! template <class T>
-    //! constexpr std::size_t variant_size_v = variant_size<T>::value;
+    //! inline constexpr std::size_t variant_size_v = variant_size<T>::value;
     template <typename T>
-    EGGS_CXX11_CONSTEXPR std::size_t variant_size_v = variant_size<T>::value;
+    EGGS_CXX17_INLINE EGGS_CXX11_CONSTEXPR std::size_t variant_size_v =
+        variant_size<T>::value;
 #endif
 
     //! template <std::size_t I, class T>
