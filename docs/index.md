@@ -16,9 +16,9 @@ The library is continuously tested with the following configurations:
 [![Build Status](https://travis-ci.org/eggs-cpp/variant.svg?branch=master)](https://travis-ci.org/eggs-cpp/variant)
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/eggs-cpp/variant?branch=master&svg=true)](https://ci.appveyor.com/project/K-ballo/variant)
 
- - _Clang_ 3.8, 3.9, 4
- - _GCC_ 4.9, 5, 6
- - _Apple LLVM_ 7.3, 8.3
+ - _Clang_ 3.9, 4, 5
+ - _GCC_ 5, 6, 7
+ - _Apple LLVM_ 7.3, 8.3, 9.1
  - _MSVC_ 2015, 2017
 
 _[Note:_ Older versions of _Clang_ (3.0+) and _GCC_ (4.6+) are no longer tested,
@@ -27,7 +27,7 @@ versions of _MSVC_ are not supported._]_
 
 ---
 
-> Copyright _Agustín Bergé_, _Fusion Fenix_ 2014-2017
+> Copyright _Agustín Bergé_, _Fusion Fenix_ 2014-2018
 > 
 > Distributed under the Boost Software License, Version 1.0. (See accompanying
 > file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)

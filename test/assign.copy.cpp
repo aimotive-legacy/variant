@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -14,7 +14,6 @@
 
 using eggs::variants::detail::move;
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 #include "dtor.hpp"
@@ -356,22 +355,22 @@ TEST_CASE("variant<Ts...>::operator=(variant<Ts...> const&)", "[variant.assign]"
         CHECK(v3.target<Maleficent>()->x == 42);
 
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
-        CHECK((
+        CHECK(
             !std::is_copy_assignable<
                 eggs::variant<MovableOnly>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_copy_assignable<
                 eggs::variant<NonCopyAssignable>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_copy_assignable<
                 eggs::variant<NonCopyConstructible>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_copy_assignable<
                 eggs::variant<NonCopyAssignableTrivial>
-            >::value));
+            >::value);
 #endif
     }
 }

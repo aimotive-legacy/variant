@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -11,7 +11,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 #include "dtor.hpp"
@@ -201,29 +200,29 @@ TEST_CASE("variant<Ts...>::operator=(T&&)", "[variant.assign]")
 
     // sfinae
     {
-        CHECK((
+        CHECK(
             !std::is_assignable<
                 eggs::variant<int>&, std::string
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_assignable<
                 eggs::variant<int, int>&, int
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_assignable<
                 eggs::variant<int, int const>&, int
-            >::value));
+            >::value);
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
 #  if !defined(_MSC_FULL_VER) || _MSC_FULL_VER >= 191025206
-        CHECK((
+        CHECK(
             !std::is_assignable<
                 eggs::variant<WeirdAssignment>&, long
-            >::value));
+            >::value);
 #  endif
-        CHECK((
+        CHECK(
             !std::is_assignable<
                 eggs::variant<WeirdConstructor>&, long
-            >::value));
+            >::value);
 #endif
     }
 }

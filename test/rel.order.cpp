@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -13,7 +13,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 
@@ -189,22 +188,22 @@ TEST_CASE("operator<(variant<Ts...> const&, variant<Ts...> const&)", "[variant.r
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_less<
                 eggs::variant<NonComparable<int>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater<
                 eggs::variant<NonComparable<int>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_less_equal<
                 eggs::variant<NonComparable<int>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater_equal<
                 eggs::variant<NonComparable<int>>
-            >::value));
+            >::value);
     }
 #endif
 }
@@ -310,39 +309,39 @@ TEST_CASE("operator<(variant<Ts...> const&, T const&)", "[variant.rel]")
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_less<
                 eggs::variant<int>, std::string
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater<
                 eggs::variant<int>, std::string
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_less_equal<
                 eggs::variant<int>, std::string
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater_equal<
                 eggs::variant<int>, std::string
-            >::value));
+            >::value);
 
-        CHECK((
+        CHECK(
             !has_less<
                 eggs::variant<NonComparable<int>>, int
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater<
                 eggs::variant<NonComparable<int>>, int
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_less_equal<
                 eggs::variant<NonComparable<int>>, int
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater_equal<
                 eggs::variant<NonComparable<int>>, int
-            >::value));
+            >::value);
     }
 #endif
 }
@@ -448,39 +447,39 @@ TEST_CASE("operator<(T const&, variant<Ts...> const&)", "[variant.rel]")
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_less<
                 std::string, eggs::variant<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater<
                 std::string, eggs::variant<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_less_equal<
                 std::string, eggs::variant<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater_equal<
                 std::string, eggs::variant<int>
-            >::value));
+            >::value);
 
-        CHECK((
+        CHECK(
             !has_less<
                 int, eggs::variant<NonComparable<int>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater<
                 int, eggs::variant<NonComparable<int>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_less_equal<
                 int, eggs::variant<NonComparable<int>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_greater_equal<
                 int, eggs::variant<NonComparable<int>>
-            >::value));
+            >::value);
     }
 #endif
 }

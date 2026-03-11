@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -11,7 +11,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 
@@ -24,7 +23,7 @@ TEST_CASE("variant<Ts...>::target_type()", "[variant.obs]")
 
         CHECK(v.target_type() == typeid(int));
 
-        CHECK((noexcept(v.target_type()) == true));
+        CHECK(noexcept(v.target_type()) == true);
 
 #if EGGS_CXX11_HAS_CONSTEXPR_RTTI
         // constexpr
@@ -41,7 +40,7 @@ TEST_CASE("variant<Ts...>::target_type()", "[variant.obs]")
 
         CHECK(v.target_type() == typeid(void));
 
-        CHECK((noexcept(v.target_type()) == true));
+        CHECK(noexcept(v.target_type()) == true);
 
 #if EGGS_CXX11_HAS_CONSTEXPR_RTTI
         // constexpr
@@ -59,7 +58,7 @@ TEST_CASE("variant<>::target_type()", "[variant.obs]")
 
     CHECK(v.target_type() == typeid(void));
 
-    CHECK((noexcept(v.target_type()) == true));
+    CHECK(noexcept(v.target_type()) == true);
 
 #if EGGS_CXX11_HAS_CONSTEXPR_RTTI
     // constexpr

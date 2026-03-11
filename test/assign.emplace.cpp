@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -12,7 +12,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 #include "dtor.hpp"
@@ -235,11 +234,11 @@ TEST_CASE("variant<Ts...>::emplace<I>(Args&&...)", "[variant.assign]")
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_emplace_index<
                 eggs::variant<int>,
                 0, std::string
-            >::value));
+            >::value);
     }
 #endif
 }
@@ -411,11 +410,11 @@ TEST_CASE("variant<Ts...>::emplace<I>(std::initializer_list<U>, Args&&...)", "[v
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_emplace_index<
                 eggs::variant<std::string>,
                 0, std::initializer_list<int>
-            >::value));
+            >::value);
     }
 #endif
 }
@@ -589,11 +588,11 @@ TEST_CASE("variant<Ts...>::emplace<T>(Args&&...)", "[variant.assign]")
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_emplace_type<
                 eggs::variant<int>,
                 int, std::string
-            >::value));
+            >::value);
     }
 #endif
 }
@@ -746,11 +745,11 @@ TEST_CASE("variant<Ts...>::emplace<T>(std::initializer_list<U>, Args&&...)", "[v
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // sfinae
     {
-        CHECK((
+        CHECK(
             !has_emplace_type<
                 eggs::variant<std::string>,
                 std::string, std::initializer_list<int>
-            >::value));
+            >::value);
     }
 #endif
 }

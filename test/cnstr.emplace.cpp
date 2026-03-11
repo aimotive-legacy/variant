@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -11,7 +11,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 
@@ -47,16 +46,16 @@ TEST_CASE("variant<Ts...>::variant(in_place<I>, Args&&...)", "[variant.cnstr]")
 
     // sfinae
     {
-        CHECK((
+        CHECK(
             !std::is_constructible<
                 eggs::variant<int>,
                 eggs::variants::in_place_index_t<0>, std::string
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_constructible<
                 eggs::variant<int>,
                 eggs::variants::in_place_index_t<1>
-            >::value));
+            >::value);
     }
 }
 
@@ -105,16 +104,16 @@ TEST_CASE("variant<Ts...>::variant(in_place<I>, std::initializer_list<U>, Args&&
 
     // sfinae
     {
-        CHECK((
+        CHECK(
             !std::is_constructible<
                 eggs::variant<std::string>,
                 eggs::variants::in_place_index_t<0>, std::initializer_list<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_constructible<
                 eggs::variant<std::string>,
                 eggs::variants::in_place_index_t<1>, std::initializer_list<int>
-            >::value));
+            >::value);
     }
 }
 
@@ -163,21 +162,21 @@ TEST_CASE("variant<Ts...>::variant(in_place<T>, Args&&...)", "[variant.cnstr]")
 
     // sfinae
     {
-        CHECK((
+        CHECK(
             !std::is_constructible<
                 eggs::variant<int>,
                 eggs::variants::in_place_type_t<int>, std::string
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_constructible<
                 eggs::variant<int, int>,
                 eggs::variants::in_place_type_t<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_constructible<
                 eggs::variant<int, int const>,
                 eggs::variants::in_place_type_t<int>
-            >::value));
+            >::value);
     }
 }
 
@@ -213,20 +212,20 @@ TEST_CASE("variant<Ts...>::variant(in_place<T>, std::initializer_list<U>, Args&&
 
     // sfinae
     {
-        CHECK((
+        CHECK(
             !std::is_constructible<
                 eggs::variant<std::string>,
                 eggs::variants::in_place_type_t<std::string>, std::initializer_list<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_constructible<
                 eggs::variant<std::string, std::string>,
                 eggs::variants::in_place_type_t<std::string>, std::initializer_list<int>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_constructible<
                 eggs::variant<std::string, std::string const>,
                 eggs::variants::in_place_type_t<std::string>, std::initializer_list<int>
-            >::value));
+            >::value);
     }
 }

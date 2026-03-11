@@ -1,9 +1,11 @@
 # Eggs.Variant
 #
-# Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+# Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 #
 # Distributed under the Boost Software License, Version 1.0. (See accompanying
 # file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+
+add_library(Catch2 OBJECT catch.cpp)
 
 set(_tests
   apply
@@ -30,7 +32,7 @@ set(_tests
   rel.order
   swap)
 foreach (_test ${_tests})
-  add_executable(test.${_test} ${_test}.cpp)
+  add_executable(test.${_test} ${_test}.cpp $<TARGET_OBJECTS:Catch2>)
   target_link_libraries(test.${_test} Eggs::Variant)
 
   add_test(NAME test.${_test} COMMAND test.${_test})
@@ -51,6 +53,8 @@ set(_config_macros
   cxx11_noreturn
   cxx11_has_sfinae_for_expressions
   cxx14_has_variable_templates
+  cxx17_has_inline_variables
+  cxx17_inline
   cxx17_std_has_constexpr_addressof
   cxx11_std_has_is_nothrow_traits
   cxx17_std_has_swappable_traits

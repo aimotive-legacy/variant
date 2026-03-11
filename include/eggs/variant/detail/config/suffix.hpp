@@ -1,7 +1,7 @@
 //! \file eggs/variant/detail/config/suffix.hpp
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -70,22 +70,21 @@
 #  undef EGGS_CXX14_HAS_VARIABLE_TEMPLATES_DEFINED
 #endif
 
-/// constexpr std::addressof support
-#ifdef EGGS_CXX17_STD_HAS_CONSTEXPR_ADDRESSOF_DEFINED
-#  undef EGGS_CXX17_STD_HAS_CONSTEXPR_ADDRESSOF
-#  undef EGGS_CXX17_STD_HAS_CONSTEXPR_ADDRESSOF_DEFINED
+/// inline variables support
+#ifdef EGGS_CXX17_HAS_INLINE_VARIABLES_DEFINED
+#  undef EGGS_CXX17_HAS_INLINE_VARIABLES
+#  undef EGGS_CXX17_HAS_INLINE_VARIABLES_DEFINED
+#endif
+
+#ifdef EGGS_CXX17_INLINE_DEFINED
+#  undef EGGS_CXX17_INLINE
+#  undef EGGS_CXX17_INLINE_DEFINED
 #endif
 
 /// std::is_nothrow_* support
 #ifdef EGGS_CXX11_STD_HAS_IS_NOTHROW_TRAITS_DEFINED
 #  undef EGGS_CXX11_STD_HAS_IS_NOTHROW_TRAITS
 #  undef EGGS_CXX11_STD_HAS_IS_NOTHROW_TRAITS_DEFINED
-#endif
-
-/// std::is_[nothrow_]swappable support
-#ifdef EGGS_CXX17_STD_HAS_SWAPPABLE_TRAITS_DEFINED
-#  undef EGGS_CXX17_STD_HAS_SWAPPABLE_TRAITS
-#  undef EGGS_CXX17_STD_HAS_SWAPPABLE_TRAITS_DEFINED
 #endif
 
 /// std::is_trivially_copyable support
@@ -98,6 +97,18 @@
 #ifdef EGGS_CXX11_STD_HAS_IS_TRIVIALLY_DESTRUCTIBLE_DEFINED
 #  undef EGGS_CXX11_STD_HAS_IS_TRIVIALLY_DESTRUCTIBLE
 #  undef EGGS_CXX11_STD_HAS_IS_TRIVIALLY_DESTRUCTIBLE_DEFINED
+#endif
+
+/// constexpr std::addressof support
+#ifdef EGGS_CXX17_STD_HAS_CONSTEXPR_ADDRESSOF_DEFINED
+#  undef EGGS_CXX17_STD_HAS_CONSTEXPR_ADDRESSOF
+#  undef EGGS_CXX17_STD_HAS_CONSTEXPR_ADDRESSOF_DEFINED
+#endif
+
+/// std::is_[nothrow_]swappable support
+#ifdef EGGS_CXX17_STD_HAS_SWAPPABLE_TRAITS_DEFINED
+#  undef EGGS_CXX17_STD_HAS_SWAPPABLE_TRAITS
+#  undef EGGS_CXX17_STD_HAS_SWAPPABLE_TRAITS_DEFINED
 #endif
 
 #if defined(_MSC_VER)

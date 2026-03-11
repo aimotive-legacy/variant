@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -13,7 +13,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
@@ -96,69 +95,69 @@ TEST_CASE("std::hash<variant<Ts...>>", "[variant.hash]")
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
     // noexcept
     {
-        REQUIRE((
+        REQUIRE(
             has_hash<
                 eggs::variant<NoThrowHashDefaultConstructible<true>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             has_nothrow_hash<
                 eggs::variant<NoThrowHashDefaultConstructible<true>>
-            >::value));
+            >::value);
 
-        REQUIRE((
+        REQUIRE(
             has_hash<
                 eggs::variant<NoThrowHashDefaultConstructible<false>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_nothrow_hash<
                 eggs::variant<NoThrowHashDefaultConstructible<false>>
-            >::value));
+            >::value);
 
-        REQUIRE((
+        REQUIRE(
             has_hash<
                 eggs::variant<NoThrowHashable<true>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             has_nothrow_hash<
                 eggs::variant<NoThrowHashable<true>>
-            >::value));
+            >::value);
 
-        REQUIRE((
+        REQUIRE(
             has_hash<
                 eggs::variant<NoThrowHashable<false>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_nothrow_hash<
                 eggs::variant<NoThrowHashable<false>>
-            >::value));
+            >::value);
     }
 
     // sfinae
     {
-        CHECK((
+        CHECK(
             !std::is_constructible<
                 std::hash<eggs::variant<NonHashable>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_copy_constructible<
                 std::hash<eggs::variant<NonHashable>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_move_constructible<
                 std::hash<eggs::variant<NonHashable>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_copy_assignable<
                 std::hash<eggs::variant<NonHashable>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_move_assignable<
                 std::hash<eggs::variant<NonHashable>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !has_hash<
                 eggs::variant<NonHashable>
-            >::value));
+            >::value);
     }
 #endif
 }

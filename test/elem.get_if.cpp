@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -10,7 +10,6 @@
 
 #include <eggs/variant/detail/config/prefix.hpp>
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 
@@ -24,7 +23,7 @@ TEST_CASE("get_if<I>(variant<Ts...>*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<0>(v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<0>(v)) == true);
     }
 
     // same source
@@ -39,7 +38,7 @@ TEST_CASE("get_if<I>(variant<Ts...>*)", "[variant.elem]")
         REQUIRE(ptr != nullptr);
         CHECK(*ptr == 42);
 
-        CHECK((noexcept(eggs::variants::get_if<0>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<0>(&v)) == true);
     }
 
     // different source
@@ -53,7 +52,7 @@ TEST_CASE("get_if<I>(variant<Ts...>*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<1>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<1>(&v)) == true);
     }
 
 #if EGGS_CXX14_HAS_CONSTEXPR
@@ -93,7 +92,7 @@ TEST_CASE("get_if<I>(variant<Ts...> const*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<0>(v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<0>(v)) == true);
     }
 
     // same source
@@ -108,7 +107,7 @@ TEST_CASE("get_if<I>(variant<Ts...> const*)", "[variant.elem]")
         REQUIRE(ptr != nullptr);
         CHECK(*ptr == 42);
 
-        CHECK((noexcept(eggs::variants::get_if<0>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<0>(&v)) == true);
     }
 
     // different source
@@ -122,7 +121,7 @@ TEST_CASE("get_if<I>(variant<Ts...> const*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<1>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<1>(&v)) == true);
     }
 
 #if EGGS_CXX11_HAS_CONSTEXPR
@@ -157,7 +156,7 @@ TEST_CASE("get_if<T>(variant<Ts...>*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<int>(v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<int>(v)) == true);
     }
 
     // same source
@@ -169,7 +168,7 @@ TEST_CASE("get_if<T>(variant<Ts...>*)", "[variant.elem]")
         REQUIRE(ptr != nullptr);
         CHECK(*ptr == 42);
 
-        CHECK((noexcept(eggs::variants::get_if<int>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<int>(&v)) == true);
     }
 
     // different source
@@ -180,7 +179,7 @@ TEST_CASE("get_if<T>(variant<Ts...>*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<std::string>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<std::string>(&v)) == true);
     }
 
 #if EGGS_CXX14_HAS_CONSTEXPR
@@ -207,7 +206,7 @@ TEST_CASE("get_if<T>(variant<Ts...> const*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<int>(v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<int>(v)) == true);
     }
 
     // same source
@@ -219,7 +218,7 @@ TEST_CASE("get_if<T>(variant<Ts...> const*)", "[variant.elem]")
         REQUIRE(ptr != nullptr);
         CHECK(*ptr == 42);
 
-        CHECK((noexcept(eggs::variants::get_if<int>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<int>(&v)) == true);
     }
 
     // different source
@@ -230,7 +229,7 @@ TEST_CASE("get_if<T>(variant<Ts...> const*)", "[variant.elem]")
 
         CHECK(ptr == nullptr);
 
-        CHECK((noexcept(eggs::variants::get_if<std::string>(&v)) == true));
+        CHECK(noexcept(eggs::variants::get_if<std::string>(&v)) == true);
     }
 
 #if EGGS_CXX11_HAS_CONSTEXPR

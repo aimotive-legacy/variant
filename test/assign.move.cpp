@@ -1,6 +1,6 @@
 // Eggs.Variant
 //
-// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2017
+// Copyright Agustin K-ballo Berge, Fusion Fenix 2014-2018
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -14,7 +14,6 @@
 
 using eggs::variants::detail::move;
 
-#define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "constexpr.hpp"
 #include "dtor.hpp"
@@ -350,59 +349,59 @@ TEST_CASE("variant<Ts...>::operator=(variant<Ts...>&&)", "[variant.assign]")
 #if EGGS_CXX11_STD_HAS_IS_NOTHROW_TRAITS
     // noexcept
     {
-        REQUIRE((
+        REQUIRE(
             std::is_move_assignable<
                 eggs::variant<int, NoThrowMoveAssignable<true>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             std::is_nothrow_move_assignable<
                 eggs::variant<int, NoThrowMoveAssignable<true>>
-            >::value));
+            >::value);
 
-        REQUIRE((
+        REQUIRE(
             std::is_move_assignable<
                 eggs::variant<int, NoThrowMoveAssignable<false>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_nothrow_move_assignable<
                 eggs::variant<int, NoThrowMoveAssignable<false>>
-            >::value));
+            >::value);
 
-        REQUIRE((
+        REQUIRE(
             std::is_move_assignable<
                 eggs::variant<int, NoThrowMoveConstructible<true>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             std::is_nothrow_move_assignable<
                 eggs::variant<int, NoThrowMoveConstructible<true>>
-            >::value));
+            >::value);
 
-        REQUIRE((
+        REQUIRE(
             std::is_move_assignable<
                 eggs::variant<int, NoThrowMoveConstructible<false>>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_nothrow_move_assignable<
                 eggs::variant<int, NoThrowMoveConstructible<false>>
-            >::value));
+            >::value);
     }
 #endif
 
     // sfinae
     {
 #if EGGS_CXX11_HAS_SFINAE_FOR_EXPRESSIONS
-        CHECK((
+        CHECK(
             !std::is_move_assignable<
                 eggs::variant<NonCopyAssignable>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_move_assignable<
                 eggs::variant<NonCopyConstructible>
-            >::value));
-        CHECK((
+            >::value);
+        CHECK(
             !std::is_move_assignable<
                 eggs::variant<NonCopyAssignableTrivial>
-            >::value));
+            >::value);
 #endif
     }
 }
@@ -425,7 +424,7 @@ TEST_CASE("variant<>::operator=(variant<>&&)", "[variant.assign]")
     CHECK(bool(v2) == false);
     CHECK(v2.which() == v1.which());
 
-    CHECK((noexcept(v2 = ::move(v1)) == true));
+    CHECK(noexcept(v2 = ::move(v1)) == true);
 
     // list-initialization
     {
